@@ -1,0 +1,26 @@
+Used in script,Description,Value,Unit,Reference
+ingmax,Maximum ingestion rate,See file 'Population.csv',,Stirling 1977 Ballestrazzi et al 1998 Peres et al 1999 Lupatsch et al 2001 Person-Le Ruyet et al 2004 Moreira et al 2008
+alpha,Feeding catabolism coefficient,0.3, - ,Stirling 1977
+betaprot,Assimilation coefficient for protein,0.884, - ,Spyridakis et al 1989 in Dosdat 2001 Moreira et al 2008
+betalip,Assimilation coefficient for lipid,0.967, - ,Spyridakis et al 1989 in Dosdat 2001 Moreira et al 2008
+betacarb,Assimilation coefficient for carbohydrate,0.835, - ,Spyridakis et al 1989 in Dosdat 2001 Moreira et al 2008
+epsprot,Energy content of protein,23600,J/gprot,Brett & Groves 1979 in Requena et al 1999
+epslip,Energy content of lipid,36200,J/glip,Brett & Groves 1979 in Requena et al 1999
+epscarb,Energy content of carbohydrate,17200,J/gcarb,Brett & Groves 1979 in Requena et al 1999
+epsO2,Energy consumed by the respiration of 1g of oxygen,13400,J/gO2,Elliott & Davison 1975
+pk,Temperature coefficient for the fasting catabolism,0.05,1/d,Estimated from Dalla Via et al 1998 and Claireaux & Lagardère 1999
+k0,Fasting catabolism at 0°C,0.00069,1/°C,Estimated from Dalla Via et al 1998 and Claireaux & Lagardère 1999
+m,Weight exponent for the anabolism,0.6, - ,Lanari et al 2002
+n,Weight exponent for the catabolism,1, - ,Ursin 1967
+betac,Shape coefficient for the H(Tw) function,0.23, - ,Brigolin et al 2008
+Tma,Maximum lethal temperature for Dicentrarchus labrax,32,°C,Barnabé 1990 in Dalla Via et al 1998
+Toa,Optimal temperature for Dicentrarchus labrax,22,°C,Barnabé 1990 de Walderstein 1990 Claireaux & Lagardère 1999
+Taa,Lowest feeding temperature for Dicentrarchus labrax,7,°C,Tesseyre 1979 e Pastoureaud 1991 in Dalla Via et al 1998
+omega,Oxygen consumption – weight loss ratio,0.6542,gO2/g,Calibrated
+a,Energy content of fish parameter,5170,J/gfish,Lupatsch et al 2003
+k,Weight exponent for energy content,0.107, - ,Lupatsch et al 2003
+eff,Food ingestion efficiency,0.95, - ,Empirical value provided by the farmers
+ti,Start of the integration,01/11/2010,,
+tf,End of the integration ,30/07/2012,,
+IC,Initial condition,See file 'Population.csv',,
+CS,Commercial size,450,g,http://www.fao.org/fishery/culturedspecies/Dicentrarchus_labrax/en

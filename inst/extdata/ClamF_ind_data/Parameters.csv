@@ -1,0 +1,30 @@
+Quantity,Description,Value,Unit,Reference
+Gdmax,Max growth rate on a dry weight base ,0.014,gdw^0.265 d^-1,Solidoro et al 2000
+Gwmax,Max growth rate on a wet weight base ,0.031,gww^0.333 d^-1,Solidoro et al 2000
+Rdmax,Max respiration rate on a dry weight base,0.01,d^-1,Solidoro et al 2000
+Rwmax,Max respiration rate on a wet weight base ,0.0081,d^-1,Solidoro et al 2000
+p,Dry weight -wet weight allometric exponent,1.26, - ,Goulletquer 1989
+k,Wet weight - length allometric exponent,0.333,-,Solidoro et al 2000
+q,Coefficient of allometric filter velocity,0.32, - ,Bensch et al 1992
+a,Wet weight - length allometric coefficient,0.00026, - ,Solidoro et al 2000
+b,Dry weight -wet weight allometric coefficient,0.0234, - ,Goulletquer 1989
+m,Anabolism weight exponent,0.6666,-,Ursin 1967
+n,Catabolism weight exponent,1, - ,Ursin 1967
+vf,Maximum filtration rate,2.3,l/d gdw^-q,Solidoro et al 2000
+epsT,Energetic content of Ruditapes philippinarum,19200,J/gdw,Goulletquer 1989
+epsF,Energetic content of food,4.7,kJ/gChla,Platt and Irwin 1973
+TmaxG,Max temperature for growth,32,°C,Solidoro et al 2000
+ToptG,Optimum temperature for growth,22.7,°C,Solidoro et al 2000
+TmaxR,Max temperature for respiration,35,°C,Pellizzato 1990
+ToptR,Optimum temperature for respiration,20.5,°C,Bensch et al 1992
+TmaxV,Maximum temperature for filtration,32,°C,Pellizzato 1990
+ToptV,Optimum temperature for filtration,22.7,°C,Solidoro et al 2000
+betaG,Coefficient of temperature growth,0.2,°C^-1,Solidoro et al 2000
+betaV,Coefficient of temperature respiration,0.17,°C^-1,Solidoro et al 2000
+betaR,Coefficient of temperature filtration,0.2,°C^-1,Solidoro et al 2000
+niT,Ratio of energetic demand satisfied by nonplanktonic material,0.25, - ,Pastres et al 2001
+kap,Clorophyll - C in phytoplankton conversion ratio,8.92,mgChla/gC,Pastres et al 2001
+IC,Wet weight initial condition,0.0029,g,
+ti,start of integration,01/03/2010, - ,
+tf,end of integration,15/06/2012, - ,
+CS,Commercial size,40,mm,http://www.ciesm.org/atlas/Ruditapesphilippinarum.html

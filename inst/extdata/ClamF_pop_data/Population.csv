@@ -1,0 +1,9 @@
+Quantity,Description,Value,Unit,Reference
+meanWw,Wet weight average,0.0029,g,
+deltaWw,Wet weight standard deviation,0.001,g,
+Wwlb,Wet weight lower bound,0.0001,g,
+meanGdmax,Maximum growth rate on dry weight average,0.014,gdw^0.265 d^-1,
+deltaGdmax,Maximum growth rate on a dry weight  standard deviation,0.002,gdw^0.265 d^-1,
+Nseed,Number of seeded individuals,3.34E+07, -,
+mortmyt,natural mortality rate,0.000410959,1/d,
+nruns,number of simulations,5000,,

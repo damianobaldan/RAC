@@ -1,0 +1,27 @@
+Quantity,Description,Value,Unit,Reference
+epsR,Clam tissue energy content,19200,J/g,Solidoro et al 2000
+epsDT,Energy content of detritus,12.5,J/mgC,Brigolin et al
+epsPhy,Energy content of phytoplankton,23.5,J/mgDW,Brigolin et al
+epsO2,Energy consumed by the respiration of 1g of oxygen,14,J/mgO2,
+alpha,Feeding catabolism,0.092, - ,
+CRmax,Maximum filtration rate,See file 'Population.csv',,Solidoro et al 2000
+AEmax,Maximum adsorption efficiency,1, - ,
+Rmax,Maximum respiration rate,4.32,mlO2/h,
+Amax,Maximum ingestion rate for 1 g of clam,3.50E+02,J/g d,Solidoro et al 2000
+q,Weight exponent for filtration,3.20E-01, - ,
+Ks,Half-saturation constant for AE,0.2, - ,Goulletquer 1989
+betaa,Temperature exonent for the anabolism,0.2,1/°C,Solidoro et al 2000
+betac,Temperature exponent for the catabolism,0.17,1/°C,Solidoro et al 2000
+Tma,Maximum temperature for the anabolic process,32,°C,Pellizzato 1990
+Toa,Optimal temperature for the anabolic process,22.7,°C,Solidoro et al 2000
+Tmc,Optimum temperature for the catabolic process,35,°C,Pellizzato 1990
+Toc,Optimal temperature for the catabolic process,20.5,°C,Bensch et al 1992
+aF,Dry weight-wet weight conversion coefficient,0.0234, - ,
+bF,Dry weight- wet weight exponent,1.26, -,
+a,Dry weight - length conversion coefficient,0.00026, -,
+b,Dry weight - length exponent,0.33, -,
+lambda,Chlorophyll to Phytoplankton conversion factor,50, - ,
+IC,initial condition on weight,See file 'Population.csv',,
+ti,start of integration,01/03/2010, - ,
+tf,end of integration,15/06/2012, - ,
+CS,Commercial size,40,mm,http://www.ciesm.org/atlas/Ruditapesphilippinarum.html

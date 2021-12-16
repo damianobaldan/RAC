@@ -1,0 +1,9 @@
+Quantity,Description,Value,Unit,Reference
+meanWd,Dry weight average,0.0029,g,
+deltaWd,Dry weight standard deviation,0.001,g,
+Wdlb,Dry weight lower bound,0.0001,g,
+meanCR,Clearence rate average,50,l/d gDW,
+deltaCRmax,Clearance rate standard deviation,20,l/d gDW,
+Nseed,Number of seeded individuals,3.34E+07, -,
+mortmyt,natural mortality rate,0.000410959,1/d,
+nruns,number of simulations,5000,,
