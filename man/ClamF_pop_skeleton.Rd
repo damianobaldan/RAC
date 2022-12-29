@@ -12,4 +12,3 @@ ClamF_pop_skeleton(userpath)
 \description{
 Creates the folders structure for Clam population model (alternative version)
 }
-

@@ -99,19 +99,19 @@ Mussel_spatial_dataloader<-function(userpath) {
   chl <- raster::stack(paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings/chl_a.nc"))
 
   # transform rasters to points
-  pixel_sst <- t(rasterToPoints(sst))
+  pixel_sst <- t(raster::rasterToPoints(sst))
   sst_export <- pixel_sst[-c(1,2),]
   #colnames(pixel_sst) <- gsub("V", "sst", colnames(pixel_sst))
   write.csv(sst_export,paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings//sst.csv"))
-  sst <- read.csv(paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings//sst.csv"),head=T)
+  sst <- read.csv(paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings//sst.csv"),header = TRUE)
   sst <- sst[,-(1)]
   colnames(sst) <- gsub("V", "sst", colnames(sst))
 
-  pixel_chla <- t(rasterToPoints(chl))
+  pixel_chla <- t(raster::rasterToPoints(chl))
   chla_export <- pixel_chla[-c(1,2),]
   #colnames(pixel_chla) <- gsub("V", "chl", colnames(pixel_chla))
   write.csv(chla_export,paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings//chl.csv"))
-  chl <- read.csv(paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings//chl.csv"),head=T)
+  chl <- read.csv(paste0(userpath,"/Mussel_spatial/Inputs/Spatial forcings//chl.csv"),header = TRUE)
   chl <- chl[,-(1)]
   colnames(chl) <- gsub("V", "chl", colnames(chl))
 

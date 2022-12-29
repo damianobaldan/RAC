@@ -12,4 +12,3 @@ Bass_spatial_skeleton(userpath)
 \description{
 Creates the folders structure for Bass spatialized model
 }
-

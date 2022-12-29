@@ -62,11 +62,11 @@ Bream_spatial_dataloader<-function(userpath) {
   sst <- raster::stack(paste0(userpath,"/Bream_spatial/Inputs/Spatial forcings//sst.nc"))
 
   # transform rasters to points
-  pixel_sst <- t(rasterToPoints(sst))
+  pixel_sst <- t(raster::rasterToPoints(sst))
   sst_export <- pixel_sst[-c(1,2),]
   #colnames(pixel_sst) <- gsub("V", "sst", colnames(pixel_sst))
   write.csv(sst_export,paste0(userpath,"/Bream_spatial/Inputs/Spatial forcings//sst.csv"))
-  sst <- read.csv(paste0(userpath,"/Bream_spatial/Inputs/Spatial forcings//sst.csv"),head=T)
+  sst <- read.csv(paste0(userpath,"/Bream_spatial/Inputs/Spatial forcings//sst.csv"), header = TRUE)
   sst <- sst[,-(1)]
   colnames(sst) <- gsub("V", "sst", colnames(sst))
 

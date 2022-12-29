@@ -4,8 +4,21 @@
 \alias{Mussel_pop_RKsolver}
 \title{Solves the Mussel population bioenergetic balance with a 4th order Runge Kutta method}
 \usage{
-Mussel_pop_RKsolver(Param, times, IC, Tint, Phyint, DTint, POCint, Ccont, Ncont,
-  Pcont, POMint, TSSint, N)
+Mussel_pop_RKsolver(
+  Param,
+  times,
+  IC,
+  Tint,
+  Phyint,
+  DTint,
+  POCint,
+  Ccont,
+  Ncont,
+  Pcont,
+  POMint,
+  TSSint,
+  N
+)
 }
 \arguments{
 \item{Param}{a vector containing model parameters}
@@ -40,4 +53,3 @@ a list containing the weights of the mussel, the excreted CNP, the mussel CNP, t
 \description{
 Solves the Mussel population bioenergetic balance with a 4th order Runge Kutta method
 }
-

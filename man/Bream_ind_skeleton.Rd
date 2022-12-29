@@ -12,4 +12,3 @@ Bream_ind_skeleton(userpath)
 \description{
 Creates the folders structure for Seabream individual bioenergetic model
 }
-

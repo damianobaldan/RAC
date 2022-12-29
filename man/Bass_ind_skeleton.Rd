@@ -12,4 +12,3 @@ Bass_ind_skeleton(userpath)
 \description{
 Creates the folders structure for Seabass individual bioenergetic model
 }
-

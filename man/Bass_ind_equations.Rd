@@ -23,4 +23,3 @@ model output at time t
 \description{
 Seabass bioenergetic individual model differential equations
 }
-

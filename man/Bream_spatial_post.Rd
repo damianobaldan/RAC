@@ -23,4 +23,3 @@ a list containing the model outputs saved by the main script to .nc; .csv and .a
 \description{
 Postprocess the Bream spatialized model results
 }
-

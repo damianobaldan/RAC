@@ -25,4 +25,3 @@ a list containing the fish weight, proteines, lipids and carbohydrates wasted or
 \description{
 Solves the Seabream bioenergetic balance with a 4th order Runge Kutta method - used in spatialized model
 }
-

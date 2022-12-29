@@ -17,4 +17,3 @@ a list containing the time series in the odd positions and realted forcings in t
 \description{
 Preprocesses the data for the bioenergetic balance for Sea Bream
 }
-

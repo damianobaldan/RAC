@@ -25,4 +25,3 @@ model output at time t
 \description{
 Seabass bioenergetic population model differential equations
 }
-

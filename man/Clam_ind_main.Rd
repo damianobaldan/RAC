@@ -17,4 +17,3 @@ A list containing model outputs: weights, temperature limitation functions and m
 \description{
 Clam bioenergetic individual model
 }
-

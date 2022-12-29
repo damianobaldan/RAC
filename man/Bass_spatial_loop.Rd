@@ -17,4 +17,3 @@ a list containing the outputs that main script saves to .nc; .csv and .asc files
 \description{
 Solves the bioenergetic balance for Bass
 }
-

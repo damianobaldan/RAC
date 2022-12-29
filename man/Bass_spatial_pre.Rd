@@ -17,4 +17,3 @@ a list containing the data used by the main script
 \description{
 Bass bioenergetic spatialized model preprocessor
 }
-

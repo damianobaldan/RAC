@@ -40,8 +40,8 @@ t0=min(as.numeric(as.Date(timeT[1], "%d/%m/%Y")), as.numeric(as.Date(timeChl[1],
 timestep=1                                           # Time step for integration [day]
 ti=as.numeric(as.Date(Dates[1], "%d/%m/%Y"))-t0      # Start of integration [day]
 tf=as.numeric(as.Date(Dates[2], "%d/%m/%Y"))-t0      # End of integration [day]
-#Ww=as.vector(matrix(0,nrow=ti))                      # Initialize vector weight
-#Ww[ti]=IC                                            # Wet weight initial value [g]
+Ww=as.vector(matrix(0,nrow=ti))                      # Initialize vector weight
+Ww[ti]=IC                                            # Wet weight initial value [g]
 times<-cbind(ti, tf, timestep)                       # Vector with integration data
 
 # Initial conditions

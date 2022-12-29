@@ -25,4 +25,3 @@ a list containing the weights of the mussel, the excreted CNP, the mussel CNP, t
 \description{
 Postprocess the Mussel population bioenergetic model results
 }
-

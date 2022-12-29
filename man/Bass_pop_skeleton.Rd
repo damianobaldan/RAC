@@ -12,4 +12,3 @@ Bass_pop_skeleton(userpath)
 \description{
 Creates the folders structure for Seabass population model
 }
-

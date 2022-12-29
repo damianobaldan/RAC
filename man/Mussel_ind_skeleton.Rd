@@ -12,4 +12,3 @@ Mussel_ind_skeleton(userpath)
 \description{
 Creates the folders structure for Mussel individual bioenergetic model
 }
-

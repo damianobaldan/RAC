@@ -23,4 +23,3 @@ a list containing the fish weight, proteines, lipids and carbohydrates wasted or
 \description{
 Seabass bioenergetic individual model postprocessor
 }
-

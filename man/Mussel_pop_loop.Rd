@@ -4,8 +4,22 @@
 \alias{Mussel_pop_loop}
 \title{Function that runs the Monte Carlo simulation for the Mussel population model}
 \usage{
-Mussel_pop_loop(Param, times, IC, Tint, Phyint, DTint, POCint, Ccont, Ncont,
-  Pcont, POMint, TSSint, N, userpath)
+Mussel_pop_loop(
+  Param,
+  times,
+  IC,
+  Tint,
+  Phyint,
+  DTint,
+  POCint,
+  Ccont,
+  Ncont,
+  Pcont,
+  POMint,
+  TSSint,
+  N,
+  userpath
+)
 }
 \arguments{
 \item{Param}{a vector containing model parameters}
@@ -42,4 +56,3 @@ a list with RK solver outputs
 \description{
 Function that runs the Monte Carlo simulation for the Mussel population model
 }
-

@@ -17,4 +17,3 @@ A list containing model outputs: weight, length mussel CNP, pseudofaeces CNP pro
 \description{
 Solves the bioenergetic balance for Mussel
 }
-

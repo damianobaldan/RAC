@@ -12,4 +12,3 @@ Mussel_pop_skeleton(userpath)
 \description{
 Creates the folders structure for Mussel population model
 }
-

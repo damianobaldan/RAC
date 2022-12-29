@@ -12,4 +12,3 @@ Mussel_spatial_skeleton(userpath)
 \description{
 Creates the folders structure for Mussel spatialized model
 }
-

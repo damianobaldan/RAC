@@ -23,4 +23,3 @@ a list containing the clam weights, temperature limitation functions and metabol
 \description{
 Postprocess the Clam individual bioenergetic model results
 }
-

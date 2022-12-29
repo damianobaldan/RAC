@@ -12,15 +12,6 @@
 
 Bass_spatial_main<-function(userpath,forcings){
 
-# Load libraries
-library(raster)
-library(rgeos)
-library(maptools)
-library(rgdal)
-library(maps)
-library(sp)
-library(ncdf4)
-
 cat('Bass bioenergetic individual model spatialized\n')
 cat(" \n")
 
@@ -165,191 +156,191 @@ O2_map<-as.data.frame(cbind(t(coord),t(O2)))
 days_commercial_map<-as.data.frame(cbind(t(coord),t(days_commercial)))
 
 # Weight map
-coordinates(weight_map) <- ~V1+V2
-proj4string(weight_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(weight_map) = TRUE
-weight_brick <- brick(weight_map)
-weight_brick <- setZ(weight_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(weight_map) <- ~V1+V2
+sp::proj4string(weight_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(weight_map) = TRUE
+weight_brick <- raster::brick(weight_map)
+weight_brick <- raster::setZ(weight_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(weight_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/weight.nc"), format="CDF", varname="weight", varunit= "g",
+raster::writeRaster(weight_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/weight.nc"), format="CDF", varname="weight", varunit= "g",
             longname="Weight of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # potential ingestion map
-coordinates(potential_ingestion_map) <- ~V1+V2
-proj4string(potential_ingestion_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(potential_ingestion_map) = TRUE
-potential_ingestion_brick <- brick(potential_ingestion_map)
-potential_ingestion_brick <- setZ(potential_ingestion_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(potential_ingestion_map) <- ~V1+V2
+sp::proj4string(potential_ingestion_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(potential_ingestion_map) = TRUE
+potential_ingestion_brick <- raster::brick(potential_ingestion_map)
+potential_ingestion_brick <- raster::setZ(potential_ingestion_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(potential_ingestion_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/potential_ingestion.nc"), format="CDF", varname="potential ingestion", varunit= "g/d",
+raster::writeRaster(potential_ingestion_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/potential_ingestion.nc"), format="CDF", varname="potential ingestion", varunit= "g/d",
             longname="Potential ingestion of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # actual ingestion map
-coordinates(actual_ingestion_map) <- ~V1+V2
-proj4string(actual_ingestion_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(actual_ingestion_map) = TRUE
-actual_ingestion_brick <- brick(actual_ingestion_map)
-actual_ingestion_brick <- setZ(actual_ingestion_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(actual_ingestion_map) <- ~V1+V2
+sp::proj4string(actual_ingestion_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(actual_ingestion_map) = TRUE
+actual_ingestion_brick <- raster::brick(actual_ingestion_map)
+actual_ingestion_brick <- raster::setZ(actual_ingestion_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(actual_ingestion_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/actual_ingestion.nc"), format="CDF", varname="actual ingestion", varunit= "g/d",
+raster::writeRaster(actual_ingestion_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/actual_ingestion.nc"), format="CDF", varname="actual ingestion", varunit= "g/d",
             longname="actual ingestion of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # faeces C map
-coordinates(faeces_C_map) <- ~V1+V2
-proj4string(faeces_C_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(faeces_C_map) = TRUE
-faeces_C_brick <- brick(faeces_C_map)
-faeces_C_brick <- setZ(faeces_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(faeces_C_map) <- ~V1+V2
+sp::proj4string(faeces_C_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(faeces_C_map) = TRUE
+faeces_C_brick <- raster::brick(faeces_C_map)
+faeces_C_brick <- raster::setZ(faeces_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(faeces_C_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/faeces_carbohydrates.nc"), format="CDF", varname="faeces carbohydrates", varunit= "g/d",
+raster::writeRaster(faeces_C_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/faeces_carbohydrates.nc"), format="CDF", varname="faeces carbohydrates", varunit= "g/d",
             longname="Carbohydrate in faeces produced by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # faeces P map
-coordinates(faeces_P_map) <- ~V1+V2
-proj4string(faeces_P_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(faeces_P_map) = TRUE
-faeces_P_brick <- brick(faeces_P_map)
-faeces_P_brick <- setZ(faeces_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(faeces_P_map) <- ~V1+V2
+sp::proj4string(faeces_P_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(faeces_P_map) = TRUE
+faeces_P_brick <- raster::brick(faeces_P_map)
+faeces_P_brick <- raster::setZ(faeces_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(faeces_P_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/faeces_proteins.nc"), format="CDF", varname="faeces proteins", varunit= "g/d",
+raster::writeRaster(faeces_P_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/faeces_proteins.nc"), format="CDF", varname="faeces proteins", varunit= "g/d",
             longname="Proteins in faeces produced by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # faeces L map
-coordinates(faeces_L_map) <- ~V1+V2
-proj4string(faeces_L_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(faeces_L_map) = TRUE
-faeces_L_brick <- brick(faeces_L_map)
-faeces_L_brick <- setZ(faeces_L_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(faeces_L_map) <- ~V1+V2
+sp::proj4string(faeces_L_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(faeces_L_map) = TRUE
+faeces_L_brick <- raster::brick(faeces_L_map)
+faeces_L_brick <- raster::setZ(faeces_L_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(faeces_L_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/faeces_lipids.nc"), format="CDF", varname="faeces lipids", varunit= "g/d",
+raster::writeRaster(faeces_L_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/faeces_lipids.nc"), format="CDF", varname="faeces lipids", varunit= "g/d",
             longname="Lipids in faeces produced by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # wasted C map
-coordinates(waste_C_map) <- ~V1+V2
-proj4string(waste_C_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(waste_C_map) = TRUE
-waste_C_brick <- brick(waste_C_map)
-waste_C_brick <- setZ(waste_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(waste_C_map) <- ~V1+V2
+sp::proj4string(waste_C_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(waste_C_map) = TRUE
+waste_C_brick <- raster::brick(waste_C_map)
+waste_C_brick <- raster::setZ(waste_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(waste_C_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/wasted_feed_carbohydrates.nc"), format="CDF", varname="wasted carbohydrates", varunit= "g/d",
+raster::writeRaster(waste_C_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/wasted_feed_carbohydrates.nc"), format="CDF", varname="wasted carbohydrates", varunit= "g/d",
             longname="Carbohydrates wasted feed by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # wasted L map
-coordinates(waste_L_map) <- ~V1+V2
-proj4string(waste_L_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(waste_L_map) = TRUE
-waste_L_brick <- brick(waste_L_map)
-waste_L_brick <- setZ(waste_L_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(waste_L_map) <- ~V1+V2
+sp::proj4string(waste_L_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(waste_L_map) = TRUE
+waste_L_brick <- raster::brick(waste_L_map)
+waste_L_brick <- raster::setZ(waste_L_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(waste_L_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/wasted_feed_lipids.nc"), format="CDF", varname="wasted lipids", varunit= "g/d",
+raster::writeRaster(waste_L_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/wasted_feed_lipids.nc"), format="CDF", varname="wasted lipids", varunit= "g/d",
             longname="Lipids wasted feed by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # wasted P map
-coordinates(waste_P_map) <- ~V1+V2
-proj4string(waste_P_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(waste_P_map) = TRUE
-waste_P_brick <- brick(waste_P_map)
-waste_P_brick <- setZ(waste_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(waste_P_map) <- ~V1+V2
+sp::proj4string(waste_P_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(waste_P_map) = TRUE
+waste_P_brick <- raster::brick(waste_P_map)
+waste_P_brick <- raster::setZ(waste_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(waste_P_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/wasted_feed_proteins.nc"), format="CDF", varname="wasted proteins", varunit= "g/d",
+raster::writeRaster(waste_P_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/wasted_feed_proteins.nc"), format="CDF", varname="wasted proteins", varunit= "g/d",
             longname="Proteins wasted by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # temperature response function for anabolism map
-coordinates(Tfun_A_map) <- ~V1+V2
-proj4string(Tfun_A_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(Tfun_A_map) = TRUE
-Tfun_A_brick <- brick(Tfun_A_map)
-Tfun_A_brick <- setZ(Tfun_A_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(Tfun_A_map) <- ~V1+V2
+sp::proj4string(Tfun_A_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(Tfun_A_map) = TRUE
+Tfun_A_brick <- raster::brick(Tfun_A_map)
+Tfun_A_brick <- raster::setZ(Tfun_A_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(Tfun_A_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/temperature_response_A.nc"), format="CDF", varname="Temperature response anabolism", varunit= "-",
+raster::writeRaster(Tfun_A_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/temperature_response_A.nc"), format="CDF", varname="Temperature response anabolism", varunit= "-",
             longname="temperature response function for anabolism of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # temperature response function for catabolism map
-coordinates(Tfun_C_map) <- ~V1+V2
-proj4string(Tfun_C_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(Tfun_C_map) = TRUE
-Tfun_C_brick <- brick(Tfun_C_map)
-Tfun_C_brick <- setZ(Tfun_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(Tfun_C_map) <- ~V1+V2
+sp::proj4string(Tfun_C_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(Tfun_C_map) = TRUE
+Tfun_C_brick <- raster::brick(Tfun_C_map)
+Tfun_C_brick <- raster::setZ(Tfun_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(Tfun_C_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/temperature_response_C.nc"), format="CDF", varname="Temperature response catabolism", varunit= "-",
+raster::writeRaster(Tfun_C_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/temperature_response_C.nc"), format="CDF", varname="Temperature response catabolism", varunit= "-",
             longname="temperature response function for catabolism of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # anabolic rates map
-coordinates(anabolism_map) <- ~V1+V2
-proj4string(anabolism_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(anabolism_map) = TRUE
-anabolism_brick <- brick(anabolism_map)
-anabolism_brick <- setZ(anabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(anabolism_map) <- ~V1+V2
+sp::proj4string(anabolism_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(anabolism_map) = TRUE
+anabolism_brick <- raster::brick(anabolism_map)
+anabolism_brick <- raster::setZ(anabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(anabolism_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/anabolic_rate.nc"), format="CDF", varname="Anabolic rate", varunit= "J/d",
+raster::writeRaster(anabolism_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/anabolic_rate.nc"), format="CDF", varname="Anabolic rate", varunit= "J/d",
             longname="anabolic rate for catabolism of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # catabolic rates map
-coordinates(catabolism_map) <- ~V1+V2
-proj4string(catabolism_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(catabolism_map) = TRUE
-catabolism_brick <- brick(catabolism_map)
-catabolism_brick <- setZ(catabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(catabolism_map) <- ~V1+V2
+sp::proj4string(catabolism_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(catabolism_map) = TRUE
+catabolism_brick <- raster::brick(catabolism_map)
+catabolism_brick <- raster::setZ(catabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(catabolism_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/catabolic_rate.nc"), format="CDF", varname="Catabolic rate", varunit= "J/d",
+raster::writeRaster(catabolism_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/catabolic_rate.nc"), format="CDF", varname="Catabolic rate", varunit= "J/d",
             longname="catabolic rate for catabolism of Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # NH4 release map
-coordinates(NH4_map) <- ~V1+V2
-proj4string(NH4_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(NH4_map) = TRUE
-NH4_brick <- brick(NH4_map)
-NH4_brick <- setZ(NH4_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(NH4_map) <- ~V1+V2
+sp::proj4string(NH4_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(NH4_map) = TRUE
+NH4_brick <- raster::brick(NH4_map)
+NH4_brick <- raster::setZ(NH4_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(NH4_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/NH4_release.nc"), format="CDF", varname="NH4 release", varunit= "gN",
+raster::writeRaster(NH4_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/NH4_release.nc"), format="CDF", varname="NH4 release", varunit= "gN",
             longname="Ammonia released by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # O2 release map
-coordinates(O2_map) <- ~V1+V2
-proj4string(O2_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(O2_map) = TRUE
-O2_brick <- brick(O2_map)
-O2_brick <- setZ(O2_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(O2_map) <- ~V1+V2
+sp::proj4string(O2_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(O2_map) = TRUE
+O2_brick <- raster::brick(O2_map)
+O2_brick <- raster::setZ(O2_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(O2_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/O2_consumption.nc"), format="CDF", varname="O2 consumption", varunit= "g",
+raster::writeRaster(O2_brick, paste0(userpath,"/Bass_spatial/Outputs/Out_nc/O2_consumption.nc"), format="CDF", varname="O2 consumption", varunit= "g",
             longname="Oxygen consumed by Dicentrarchus labrax estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # Days to commercial size
-coordinates(days_commercial_map) <- ~V1+V2
-proj4string(days_commercial_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(days_commercial_map) = TRUE
-days_commercial_raster = raster(days_commercial_map)
-projection(days_commercial_raster) = CRS("+proj=longlat +datum=WGS84")
-writeRaster(days_commercial_raster,paste0(userpath,"/Bass_spatial/Outputs/Out_asc/days_to_commercial_size.asc"),format="ascii",overwrite=TRUE)
+sp::coordinates(days_commercial_map) <- ~V1+V2
+sp::proj4string(days_commercial_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(days_commercial_map) = TRUE
+days_commercial_raster = raster::raster(days_commercial_map)
+raster::projection(days_commercial_raster) = sp::CRS("+proj=longlat +datum=WGS84")
+raster::writeRaster(days_commercial_raster,paste0(userpath,"/Bass_spatial/Outputs/Out_asc/days_to_commercial_size.asc"),format="ascii",overwrite=TRUE)
 
 }

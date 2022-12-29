@@ -21,4 +21,3 @@ a list containing the clam weights, temperature limitation functions and metabol
 \description{
 Clam bioenergetic individual model differential equations (alternative version)
 }
-

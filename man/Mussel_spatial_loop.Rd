@@ -17,4 +17,3 @@ A list containing model outputs that main script saves to .nc; .csv and .asc fil
 \description{
 Solves the bioenergetic balance for Mussel
 }
-

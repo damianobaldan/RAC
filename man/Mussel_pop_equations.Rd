@@ -4,8 +4,23 @@
 \alias{Mussel_pop_equations}
 \title{Mussel bioenergetic population model differential equations}
 \usage{
-Mussel_pop_equations(Param, N, Tint, Phyint, DTint, POCint, Ccont, Ncont, Pcont,
-  POMint, TSSint, Wb, R, t, trip)
+Mussel_pop_equations(
+  Param,
+  N,
+  Tint,
+  Phyint,
+  DTint,
+  POCint,
+  Ccont,
+  Ncont,
+  Pcont,
+  POMint,
+  TSSint,
+  Wb,
+  R,
+  t,
+  trip
+)
 }
 \arguments{
 \item{Param}{a vector containing model parameters}
@@ -44,4 +59,3 @@ the outputs at time t
 \description{
 Mussel bioenergetic population model differential equations
 }
-

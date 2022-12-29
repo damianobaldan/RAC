@@ -23,4 +23,3 @@ a list containing the clam weights, temperature limitation functions and metabol
 \description{
 Solves the Clam bioenergetic balance (alternative version) with a 4th order Runge Kutta method
 }
-

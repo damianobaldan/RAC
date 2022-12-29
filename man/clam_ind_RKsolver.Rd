@@ -4,7 +4,17 @@
 \alias{clam_ind_RKsolver}
 \title{Solves the Clam individual bioenergetic balance with a 4th order Runge Kutta method}
 \usage{
-clam_ind_RKsolver(Param, times, IC, Tint, Phyint, DTint, POCint, POMint, TSSint)
+clam_ind_RKsolver(
+  Param,
+  times,
+  IC,
+  Tint,
+  Phyint,
+  DTint,
+  POCint,
+  POMint,
+  TSSint
+)
 }
 \arguments{
 \item{Param}{a vector containing model parameters}
@@ -31,4 +41,3 @@ a list containing the clam weights, temperature limitation functions and metabol
 \description{
 Solves the Clam individual bioenergetic balance with a 4th order Runge Kutta method
 }
-

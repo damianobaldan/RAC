@@ -4,8 +4,22 @@
 \alias{Mussel_ind_equations}
 \title{Mussel bioenergetic individual model differential equations}
 \usage{
-Mussel_ind_equations(Param, Tint, Phyint, DTint, POCint, Ccont, Ncont, Pcont,
-  POMint, TSSint, Wb, R, t, trip)
+Mussel_ind_equations(
+  Param,
+  Tint,
+  Phyint,
+  DTint,
+  POCint,
+  Ccont,
+  Ncont,
+  Pcont,
+  POMint,
+  TSSint,
+  Wb,
+  R,
+  t,
+  trip
+)
 }
 \arguments{
 \item{Param}{a vector containing model parameters}
@@ -42,4 +56,3 @@ the outputs at time t
 \description{
 Mussel bioenergetic individual model differential equations
 }
-

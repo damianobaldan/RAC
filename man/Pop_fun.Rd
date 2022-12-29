@@ -21,4 +21,3 @@ a time series with the number of individuals
 \description{
 Function that solves the population dynamics equations including discontinuities
 }
-

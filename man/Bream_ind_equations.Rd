@@ -23,4 +23,3 @@ model output at time t
 \description{
 Seabream bioenergetic individual model differential equations
 }
-

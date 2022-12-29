@@ -25,4 +25,3 @@ model output at time t
 \description{
 Seabream bioenergetic population model differential equations
 }
-

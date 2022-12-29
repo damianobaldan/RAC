@@ -12,4 +12,3 @@ ClamF_ind_skeleton(userpath)
 \description{
 Creates the folders structure for Clam individual bioenergetic model (alternative version)
 }
-

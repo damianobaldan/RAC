@@ -8,18 +8,11 @@
 #' @export
 #'
 #' @import matrixStats plotrix rstudioapi
+#' @importFrom sp coordinates proj4string gridded CRS
+#' @importFrom raster brick setZ writeRaster
 #'
 
 Mussel_spatial_main<-function(userpath,forcings){
-
-# Load libraries
-library(raster)
-library(rgeos)
-library(maptools)
-library(rgdal)
-library(maps)
-library(sp)
-library(ncdf4)
 
 cat('Mussel bioenergetic individual model spatialized\n')
 cat(" \n")
@@ -180,215 +173,215 @@ O2_map<-as.data.frame(cbind(t(coord),t(O2)))
 days_commercial_map<-as.data.frame(cbind(t(coord),t(days_commercial)))
 
 # Weight map
-coordinates(weight_map) <- ~V1+V2
-proj4string(weight_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(weight_map) = TRUE
-weight_brick <- brick(weight_map)
-weight_brick <- setZ(weight_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(weight_map) <- ~V1+V2
+sp::proj4string(weight_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(weight_map) = TRUE
+weight_brick <- raster::brick(weight_map)
+weight_brick <- raster::setZ(weight_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(weight_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/dry_weight.nc"), format="CDF", varname="dry weight", varunit= "cm",
+raster::writeRaster(weight_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/dry_weight.nc"), format="CDF", varname="dry weight", varunit= "cm",
             longname="Dry weight of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # Length map
-coordinates(length_map) <- ~V1+V2
-proj4string(length_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(length_map) = TRUE
-length_brick <- brick(length_map)
-length_brick <- setZ(length_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(length_map) <- ~V1+V2
+sp::proj4string(length_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(length_map) = TRUE
+length_brick <- raster::brick(length_map)
+length_brick <- raster::setZ(length_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(length_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/length.nc"), format="CDF", varname="length", varunit= "cm",
+raster::writeRaster(length_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/length.nc"), format="CDF", varname="length", varunit= "cm",
             longname="Length of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # C content map
-coordinates(C_content_map) <- ~V1+V2
-proj4string(C_content_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(C_content_map) = TRUE
-C_content_brick <- brick(C_content_map)
-C_content_brick <- setZ(C_content_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(C_content_map) <- ~V1+V2
+sp::proj4string(C_content_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(C_content_map) = TRUE
+C_content_brick <- raster::brick(C_content_map)
+C_content_brick <- raster::setZ(C_content_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(C_content_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/C_content.nc"), format="CDF", varname="C content", varunit= "gC",
+raster::writeRaster(C_content_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/C_content.nc"), format="CDF", varname="C content", varunit= "gC",
             longname="Carbon content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # N content map
-coordinates(N_content_map) <- ~V1+V2
-proj4string(N_content_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(N_content_map) = TRUE
-N_content_brick <- brick(N_content_map)
-N_content_brick <- setZ(N_content_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(N_content_map) <- ~V1+V2
+sp::proj4string(N_content_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(N_content_map) = TRUE
+N_content_brick <- raster::brick(N_content_map)
+N_content_brick <- raster::setZ(N_content_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(N_content_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/N_content.nc"), format="CDF", varname="N content", varunit= "gN",
+raster::writeRaster(N_content_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/N_content.nc"), format="CDF", varname="N content", varunit= "gN",
             longname="Nitrogen content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # P content map
-coordinates(P_content_map) <- ~V1+V2
-proj4string(P_content_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(P_content_map) = TRUE
-P_content_brick <- brick(P_content_map)
-P_content_brick <- setZ(P_content_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(P_content_map) <- ~V1+V2
+sp::proj4string(P_content_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(P_content_map) = TRUE
+P_content_brick <- raster::brick(P_content_map)
+P_content_brick <- raster::setZ(P_content_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(P_content_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/P_content.nc"), format="CDF", varname="P content", varunit= "gP",
+raster::writeRaster(P_content_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/P_content.nc"), format="CDF", varname="P content", varunit= "gP",
             longname="Phosphorous content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # faeces C content map
-coordinates(faecies_C_map) <- ~V1+V2
-proj4string(faecies_C_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(faecies_C_map) = TRUE
-faecies_C_brick <- brick(faecies_C_map)
-faecies_C_brick <- setZ(faecies_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(faecies_C_map) <- ~V1+V2
+sp::proj4string(faecies_C_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(faecies_C_map) = TRUE
+faecies_C_brick <- raster::brick(faecies_C_map)
+faecies_C_brick <- raster::setZ(faecies_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(faecies_C_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/faeces_C.nc"), format="CDF", varname="Faeces C", varunit= "gC",
+raster::writeRaster(faecies_C_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/faeces_C.nc"), format="CDF", varname="Faeces C", varunit= "gC",
             longname="Faeces C content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # faeces N content map
-coordinates(faecies_N_map) <- ~V1+V2
-proj4string(faecies_N_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(faecies_N_map) = TRUE
-faecies_N_brick <- brick(faecies_N_map)
-faecies_N_brick <- setZ(faecies_N_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(faecies_N_map) <- ~V1+V2
+sp::proj4string(faecies_N_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(faecies_N_map) = TRUE
+faecies_N_brick <- raster::brick(faecies_N_map)
+faecies_N_brick <- raster::setZ(faecies_N_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(faecies_N_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/faeces_N.nc"), format="CDF", varname="Faeces N", varunit= "gN",
+raster::writeRaster(faecies_N_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/faeces_N.nc"), format="CDF", varname="Faeces N", varunit= "gN",
             longname="Faeces N content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # faeces P content map
-coordinates(faecies_P_map) <- ~V1+V2
-proj4string(faecies_P_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(faecies_P_map) = TRUE
-faecies_P_brick <- brick(faecies_P_map)
-faecies_P_brick <- setZ(faecies_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(faecies_P_map) <- ~V1+V2
+sp::proj4string(faecies_P_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(faecies_P_map) = TRUE
+faecies_P_brick <- raster::brick(faecies_P_map)
+faecies_P_brick <- raster::setZ(faecies_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(faecies_P_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/faeces_P.nc"), format="CDF", varname="Faeces P", varunit= "gP",
+raster::writeRaster(faecies_P_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/faeces_P.nc"), format="CDF", varname="Faeces P", varunit= "gP",
             longname="Faeces P content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # pseudofaeces C content map
-coordinates(pseudofaecies_C_map) <- ~V1+V2
-proj4string(pseudofaecies_C_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(pseudofaecies_C_map) = TRUE
-pseudofaecies_C_brick <- brick(pseudofaecies_C_map)
-pseudofaecies_C_brick <- setZ(pseudofaecies_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(pseudofaecies_C_map) <- ~V1+V2
+sp::proj4string(pseudofaecies_C_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(pseudofaecies_C_map) = TRUE
+pseudofaecies_C_brick <- raster::brick(pseudofaecies_C_map)
+pseudofaecies_C_brick <- raster::setZ(pseudofaecies_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(pseudofaecies_C_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/pseudofaeces_C.nc"), format="CDF", varname="Pseudofaeces C", varunit= "gC",
+raster::writeRaster(pseudofaecies_C_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/pseudofaeces_C.nc"), format="CDF", varname="Pseudofaeces C", varunit= "gC",
             longname="Pseudofaeces C content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # pseudofaeces N content map
-coordinates(pseudofaecies_N_map) <- ~V1+V2
-proj4string(pseudofaecies_N_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(pseudofaecies_N_map) = TRUE
-pseudofaecies_N_brick <- brick(pseudofaecies_N_map)
-pseudofaecies_N_brick <- setZ(pseudofaecies_N_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(pseudofaecies_N_map) <- ~V1+V2
+sp::proj4string(pseudofaecies_N_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(pseudofaecies_N_map) = TRUE
+pseudofaecies_N_brick <- raster::brick(pseudofaecies_N_map)
+pseudofaecies_N_brick <- raster::setZ(pseudofaecies_N_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(pseudofaecies_N_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/pseudofaeces_N.nc"), format="CDF", varname="Pseudofaeces N", varunit= "gN",
+raster::writeRaster(pseudofaecies_N_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/pseudofaeces_N.nc"), format="CDF", varname="Pseudofaeces N", varunit= "gN",
             longname="Pseudofaeces N content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # pseudofaeces P content map
-coordinates(pseudofaecies_P_map) <- ~V1+V2
-proj4string(pseudofaecies_P_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(pseudofaecies_P_map) = TRUE
-pseudofaecies_P_brick <- brick(pseudofaecies_P_map)
-pseudofaecies_P_brick <- setZ(pseudofaecies_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(pseudofaecies_P_map) <- ~V1+V2
+sp::proj4string(pseudofaecies_P_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(pseudofaecies_P_map) = TRUE
+pseudofaecies_P_brick <- raster::brick(pseudofaecies_P_map)
+pseudofaecies_P_brick <- raster::setZ(pseudofaecies_P_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(pseudofaecies_P_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/pseudofaeces_P.nc"), format="CDF", varname="Pseudofaeces P", varunit= "gP",
+raster::writeRaster(pseudofaecies_P_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/pseudofaeces_P.nc"), format="CDF", varname="Pseudofaeces P", varunit= "gP",
             longname="Pseudofaeces P content of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # temperature response function for anabolism map
-coordinates(Tfun_A_map) <- ~V1+V2
-proj4string(Tfun_A_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(Tfun_A_map) = TRUE
-Tfun_A_brick <- brick(Tfun_A_map)
-Tfun_A_brick <- setZ(Tfun_A_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(Tfun_A_map) <- ~V1+V2
+sp::proj4string(Tfun_A_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(Tfun_A_map) = TRUE
+Tfun_A_brick <- raster::brick(Tfun_A_map)
+Tfun_A_brick <- raster::setZ(Tfun_A_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(Tfun_A_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/temperature_response_A.nc"), format="CDF", varname="Temperature response anabolism", varunit= "-",
+raster::writeRaster(Tfun_A_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/temperature_response_A.nc"), format="CDF", varname="Temperature response anabolism", varunit= "-",
             longname="temperature response function for anabolism of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # temperature response function for catabolism map
-coordinates(Tfun_C_map) <- ~V1+V2
-proj4string(Tfun_C_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(Tfun_C_map) = TRUE
-Tfun_C_brick <- brick(Tfun_C_map)
-Tfun_C_brick <- setZ(Tfun_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(Tfun_C_map) <- ~V1+V2
+sp::proj4string(Tfun_C_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(Tfun_C_map) = TRUE
+Tfun_C_brick <- raster::brick(Tfun_C_map)
+Tfun_C_brick <- raster::setZ(Tfun_C_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(Tfun_C_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/temperature_response_C.nc"), format="CDF", varname="Temperature response catabolism", varunit= "-",
+raster::writeRaster(Tfun_C_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/temperature_response_C.nc"), format="CDF", varname="Temperature response catabolism", varunit= "-",
             longname="temperature response function for catabolism of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # anabolic rates map
-coordinates(anabolism_map) <- ~V1+V2
-proj4string(anabolism_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(anabolism_map) = TRUE
-anabolism_brick <- brick(anabolism_map)
-anabolism_brick <- setZ(anabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(anabolism_map) <- ~V1+V2
+sp::proj4string(anabolism_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(anabolism_map) = TRUE
+anabolism_brick <- raster::brick(anabolism_map)
+anabolism_brick <- raster::setZ(anabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(anabolism_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/anabolism.nc"), format="CDF", varname="Anabolic rate", varunit= "J/d",
+raster::writeRaster(anabolism_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/anabolism.nc"), format="CDF", varname="Anabolic rate", varunit= "J/d",
             longname="anabolic rate for catabolism of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # catabolic rates map
-coordinates(catabolism_map) <- ~V1+V2
-proj4string(catabolism_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(catabolism_map) = TRUE
-catabolism_brick <- brick(catabolism_map)
-catabolism_brick <- setZ(catabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(catabolism_map) <- ~V1+V2
+sp::proj4string(catabolism_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(catabolism_map) = TRUE
+catabolism_brick <- raster::brick(catabolism_map)
+catabolism_brick <- raster::setZ(catabolism_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(catabolism_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/catabolism.nc"), format="CDF", varname="Catabolic rate", varunit= "J/d",
+raster::writeRaster(catabolism_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/catabolism.nc"), format="CDF", varname="Catabolic rate", varunit= "J/d",
             longname="catabolic rate for catabolism of Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # NH4 release map
-coordinates(NH4_map) <- ~V1+V2
-proj4string(NH4_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(NH4_map) = TRUE
-NH4_brick <- brick(NH4_map)
-NH4_brick <- setZ(NH4_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(NH4_map) <- ~V1+V2
+sp::proj4string(NH4_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(NH4_map) = TRUE
+NH4_brick <- raster::brick(NH4_map)
+NH4_brick <- raster::setZ(NH4_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(NH4_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/NH4_release.nc"), format="CDF", varname="NH4 release", varunit= "gN",
+raster::writeRaster(NH4_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/NH4_release.nc"), format="CDF", varname="NH4 release", varunit= "gN",
             longname="Ammonia released by Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # O2 release map
-coordinates(O2_map) <- ~V1+V2
-proj4string(O2_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(O2_map) = TRUE
-O2_brick <- brick(O2_map)
-O2_brick <- setZ(O2_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
+sp::coordinates(O2_map) <- ~V1+V2
+sp::proj4string(O2_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(O2_map) = TRUE
+O2_brick <- raster::brick(O2_map)
+O2_brick <- raster::setZ(O2_brick, as.Date(Dates[1])+ 0:(tf-ti))    ######ADD DATE
 
-writeRaster(O2_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/O2_consumption.nc"), format="CDF", varname="O2 consumption", varunit= "g",
+raster::writeRaster(O2_brick, paste0(userpath,"/Mussel_spatial/Outputs/Out_nc/O2_consumption.nc"), format="CDF", varname="O2 consumption", varunit= "g",
             longname="Oxygen consumed by Mytilus galloprovincialis estimated through the R RAC package developed by Baldan et al",
             zname="time",
             zunit="day", overwrite=T)
 
 # Days to commercial size
-coordinates(days_commercial_map) <- ~V1+V2
-proj4string(days_commercial_map)=CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
-gridded(days_commercial_map) = TRUE
-days_commercial_raster = raster(days_commercial_map)
-projection(days_commercial_raster) = CRS("+proj=longlat +datum=WGS84")
-writeRaster(days_commercial_raster,paste0(userpath,"/Mussel_spatial/Outputs/Out_asc/days_to_commercial_size.asc"),format="ascii",overwrite=TRUE)
+sp::coordinates(days_commercial_map) <- ~V1+V2
+sp::proj4string(days_commercial_map)=sp::CRS(("+proj=longlat +datum=WGS84")) # set it to lat-long
+sp::gridded(days_commercial_map) = TRUE
+days_commercial_raster = raster::raster(days_commercial_map)
+raster::projection(days_commercial_raster) = sp::CRS("+proj=longlat +datum=WGS84")
+raster::writeRaster(days_commercial_raster,paste0(userpath,"/Mussel_spatial/Outputs/Out_asc/days_to_commercial_size.asc"),format="ascii",overwrite=TRUE)
 
 }

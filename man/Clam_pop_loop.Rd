@@ -4,8 +4,19 @@
 \alias{Clam_pop_loop}
 \title{Function that runs the Monte Carlo simulation for the Clam population model}
 \usage{
-Clam_pop_loop(Param, times, IC, Tint, Phyint, DTint, POCint, POMint, TSSint, N,
-  userpath)
+Clam_pop_loop(
+  Param,
+  times,
+  IC,
+  Tint,
+  Phyint,
+  DTint,
+  POCint,
+  POMint,
+  TSSint,
+  N,
+  userpath
+)
 }
 \arguments{
 \item{Param}{a vector containing model parameters}
@@ -36,4 +47,3 @@ a list with RK solver outputs
 \description{
 Function that runs the Monte Carlo simulation for the Clam population model
 }
-

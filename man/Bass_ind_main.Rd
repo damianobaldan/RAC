@@ -17,4 +17,3 @@ A list containing model outputs: weight, excreted quantities and quantities to w
 \description{
 Solves the bioenergetic balance for Seabass
 }
-

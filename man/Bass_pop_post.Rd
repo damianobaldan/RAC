@@ -25,4 +25,3 @@ output: a list containing the fish weight, proteines, lipids and carbohydrates w
 \description{
 Postprocess the Seabass population bioenergetic model results
 }
-

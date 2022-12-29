@@ -15,4 +15,3 @@ a list containing the time series in the odd positions and realted forcings in t
 \description{
 Function that loads forcings data for Clam individual bioenergetic model (alternative version) and performs the interpolation
 }
-

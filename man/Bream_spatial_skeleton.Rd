@@ -12,4 +12,3 @@ Bream_spatial_skeleton(userpath)
 \description{
 Creates the folders structure for Bream spatialized model
 }
-
