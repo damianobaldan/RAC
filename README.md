@@ -1,5 +1,6 @@
 # RAC
-git repository for R package RAC
+git repository for R package RAC  
+check the paper at: https://doi.org/10.1371/journal.pone.0195732
 
 # Install
 devtools::install_github("damianobaldan/RAC", build_vignettes = TRUE)
