@@ -1,0 +1,160 @@
+---
+title: "RAC"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RAC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+********
+
+#1.	Introduction
+
+The RAC package (R package for AquaCulture) is a tool allowing to simulate the rearing cycle of Mediterranean finfish and shellfish at aquaculture farms. Individual growth and metabolism (including waste products such as faeces) are simulated via a bioenergetic balance, based on environmental forcing time series. The RAC package simulates the rearing cycle of the European seabass (*Dicentrarchus labrax*), Gilthead seabream (*Sparus aurata*), Manila clam (*Ruditapes philippinarum*) and Mediterranean mussel (*Mytilus galloprovincialis*). Two different sets of equations are available for clam, with different needs in terms of quantity of forcings. The RAC package solves individual based bioenergetics balance allowing to extend the results to population level, using a set of Monte Carlo simulations in which some growth parameters are perturbed in order to reflect the natural individual variability. The bioenergetics balance ordinary differential equation (ODE) is solved by using a 4th order Runge-Kutta method. The RAC package allows the user to run automatically the individual models in spatial explicit mode, starting from input NetCDF files of environmental data. The equations implemented, and the parameters used are described in detail in Brigolin et al. 2009 (mussel), Solidoro et al. 2000 (clam), Pastres et al 2001 (clam), Brigolin et al. 2010 (seabream), Brigolin et al. 2014 (seabass and seabream). A demo dataset as well as a typical set of husbandry parameters for each species are provided to allow the user to run a simulation by modifying the existing datasets, rather than creating new ones.
+
+********
+
+#2.	Organization of the package
+The package works with several linked functions, which allow to create a folder structure at a user defined path, read the inputs located in these folders and load them into R workspace, run the simulations and save textual and graphical outputs. The folder created with the package is structured as follows:
+- 'Species_individual', 'Species_population' or 'Species_spatial' is the main folder which contains the other subfolders (i.e.: inputs and outputs); the name folder changes based on the selected species and hierarchical organization level, e.g. Bass_individual, Mussel_population, etc.
+- 'Inputs' folder contains the model inputs, the model parameters and the forcing functions, which are composed by several .csv files for individual and population and .nc files for spatialized models. For individual and population models, this folder contains the subfolders: (i) 'Forcings', which, in turn, contains the forcing of the model, (ii) 'Forcings_plots', with the plots of the pre-processed forcings, (iii) 'Parameters', with the .csv file containing the model parameters and, only for population models, (iv) 'Population_management', containing the user description of population management measures. For spatialized models, this folder contains the subfolders: (i) Point forcings with the non spatialized inputs, (ii) Spatial forcings with the spatialized inputs, (iii) Forcings_plots and (iv) spatial forcings;
+- 'Outputs' folder contains the model numerical outputs, saved as .csv files in the 'Out_csv' subfolder, graphical outputs, saved as .jpeg files in the 'Out_plots' subfolder, ascii rasters (.asc) saved in the 'Out_asc' subfolder or .nc rasters saved in the 'Out_nc' subfolder.
+
+********
+
+#3.	List of scripts
+
+The package includes thirty scripts whose titles have the structure: 'Species_type_action.R', where:
+
+Species is the animal considered:
+
+   - Bass; 
+  
+   - Bream;
+   
+   - Clam**;
+   
+   - ClamF**;
+   
+   - Mussel.
+   
+** The difference between clam and clamF is the type of equations; moreover, clam requires more forcing with respect to clamF.
+
+Type is the category of model:
+
+   - individual, ind; 
+  
+   - population, pop;
+   
+   - spatial, spatial**.
+   
+** Spatialized models are implemented only for Bream, Bass and Mussel.
+    
+Action is the command of the script, what the script performs:
+
+   - skeleton;
+  
+   - dataloader;
+   
+   - main.
+    
+********
+
+#4.	Instructions
+The package is organized in order to run the whole code by taping four simple instructions in the R Console. The steps, in the case of bream individual, as an example, are summarized below (the same operations stand for all the other models):
+i)	The user has to define the userpath, that is the address where the folders will be created and where the script will save the model inputs and outputs. Assuming that the user wants to create the folder where to run the package at 'C://User/Path', the prompt would be:
+userpath <-'C://User/Path'
+ii)	The folders, containing the model inputs and outputs, are created at the path specified by the user taping:
+Bream_ind_skeleton(userpath)
+This function copies the files included in the package in the user defined folders. This has been implemented to let the user modify his forcing without interfering with R package contents.
+iii)	The list of model forcings are loaded within the R workspace by taping:
+forcings<-Bream_ind_dataloader(userpath)
+This function takes the model inputs from the userpath, uploads and interpolates them. In the end the inputs are saved as a list in the workspace, with the following structure:
+
+  -------   ---------------------------------------- 
+  [[1]]     Date of the first forcing               
+  [[2]]     First forcing                            
+  [[3]]     Date of the second forcing               
+  [[4]]     Second forcing 
+   .....     .............
+  -------   ----------------------------------------  
+
+The script executes the dataloader allowing the user to change the input values of both forcing and parameters, if screen printed values are not satisfactory. The dataloader is executed iteratively to check input values after the modification. If values inserted are satisfactory, then the bioenergetics balance solution and the postprocessors are executed. An interpolation is performed to match temporally unequally spaced forcing values to the daily integration time step required by the function that solves the ODE.
+iv.	Outputs of the model:
+output<-Bream_ind_main(userpath, forcings)
+This function runs the equations at the basis of the model, saving the results as list in the workspace, and in the userpath folders, as .csv and jpeg files. The outputs are saved with a daily timestep, starting from the specified first day integration time (t0) up to the specified integration end (ti).
+
+
+********
+
+#5.	Structure of forcing functions
+Each species has different forcing variables and parameters, depending on its requirements for surviving and growing. The input files must be .csv and the user should not change the files structure. Format dd/mm/yyyy is required. All .csv files must be formatted using ";" as separator. This format makes it possible to open them with excel. When saving those files with excel, the ";" separator must be selected. Forcing functions must start before the integration starts, i.e. the first date reported in the file must precede the specified initial date for the beginning of the integration loop. It is important to respect the following units of measure and recommendations:
+
+- Feeding: g d^-1^
+
+- Water Temperature: Celsius degrees. 
+
+- Chlorophyll_a: mg m^-3^
+
+- POC: mgC l^-1^ --> C/P e N/P as molar ratio
+
+- POM: mg l^-1^
+
+- TSM: mg l^-1^
+
+- Parameters: units specified in the file. Parameters can be changed, but the values reported in this file are recommended.
+
+Only for population models:
+
+- Population: units specified in the file
+
+- Management: specified in the file
+
+Only for spatialized models, forcings are uploaded as .nc spatial rasters, the initial and final dates are to be specified in the file 'Spatial_dates.csv':
+
+- sst.nc: surface sea temperature from satellite data (e.g. COPERNICUS), units are celsius degrees;
+
+- chl.nc: clorophyll a concentration from satellite data (e.g. COPERNICUS), units are milligrams m^-3^
+
+********
+
+#6.	Structure of output
+For what concerns Bass and Bream, outputs are: weight [g], faeces production [g d-1 for individuals or kg d-1 for population], actual and potential ingestion [g d-1], metabolic rate in terms of anabolic and catabolic rate, wasted feed [g d-1], temperature response function, O2 consumption [gO2 d-1], NH4 release [gN d-1], metabolic rate [J d-1] and, only for population, number of individuals. For the population model outputs, the textual files contain one column each with the respective output. While, for the individual model, the number of columns change depending on the output. In particular, the files 'Weight.csv', 'actual_ingestion.csv', 'potential_ingestion.csv', O2_consumption.csv, NH4_release.csv, have only one column with the relative model output. Regarding 'faeces_production.csv' and 'wasted_feed.csv', these files contains three columns, one for lipid, one for proteins and one for carbohydrates. The file metabolism.csv and temperature_response_function.csv have two columns representing the anabolism and catabolism. The plot files are 'faeces_production.jpeg', 'actual_ingestion.jpeg', 'O2_consumption. jpeg', 'NH4_release. jpeg','metabolism.jpeg', 'temperature_response.jpeg', 'wasted_feed.jpeg', 'weight.jpeg' and, only for population models, 'Population.jpeg'.
+
+Spatialized Bream and Bass models provide the same outputs of individual models, saved as .nc rasters (as well as .csv tables): 'weight.nc', 'potential_ingestion.nc', 'actual_ingestion.nc', 'feces_carbohydrates.nc', 'feces_lipids.nc', 'feces_proteines.nc', 'wasted_feed_carbohydrates.nc', 'wasted_feed_lipids.nc', 'wasted_feed_proteines.nc', 'anabolic_rate.nc', 'catabolic_rate.nc', 'temperature_response_A.nc', 'temperature_response_C.nc', 'NH4_release.nc', 'O2_consumption.nc'. Addittionally, the days to commercial size are saved in the ascii file 'days_to_commercial_size.asc'. 
+
+For what concerns mussel, outputs are: weight [g], length [cm], pseudofaeces [Kg d-1], metabolic rate [J d-1], CNP content in the animal, in the faeces [g d-1] and in the pseudofaeces [g d-1], temperature response function, O2 consumption [gO2 d-1], NH4 release [gN d-1], and, only for population, number of individuals. The file 'biometries.csv' contains the output of dry weight, somatic tissue dry weight, gonadic tissue dry weight, total weight and length. The file 'CNPcontent.csv' and 'pseudofaeces.csv' contain three columns, one for carbon, one for nitrogen, and one for phosphorous. The file 'O2_consumption.csv' have only one column with the output of the model. The plot files are 'CNP_content.jpeg' (for the population model one file for each component is produced), 'dryweight.jpeg', 'metabolism.jpeg', 'temperature_response.jpeg', 'length.jpeg', 'pseudofaeces_production.jpeg' (for the population model one file for each component is produced), 'faeces_production.jpeg' (for the population model one file for each component is produced), 'O2_consumption. jpeg', 'NH4_release. jpeg', and, only for population models, 'Population.jpeg'.
+
+Spatialized mussels models provide the same outputs of individual models, saved as .nc rasters: 'dry_weight.nc', 'length.nc', 'C_content.nc', 'N_content.nc', 'P_content.nc', 'faeces_C.nc', 'faeces_N.nc', 'faeces_P.nc', 'pseudofaeces_C.nc', 'pseudofaeces_N.nc', 'pseudofaeces_P.nc', 'anabolic_rate.nc','catabolic_rate.nc', 'temperature_response_A.nc', 'temperature_response_C.nc', 'NH4_release.nc', 'O2_consumption.nc'. Additionally, a file raster containing days to commercial size is saved as 'days_to_commercial_size.asc'
+
+For what concerns clams, outputs are: weight [g], temperature response function, metabolic rate [J d-1], length [mm] and, only for population, number of individuals. The file 'biometries.csv' contains the output of wet weight, total weight and length. The plot files are 'wet_weight.jpeg', 'metabolism.jpeg', 'temperature_response.jpeg', 'length.jpeg' and, only for population models, 'Population.jpeg'.
+
+For all species, the days needed to reach the commercial size are computed and saved within the outputs folder as .csv file.
+
+********
+
+#7.	References
+
+Brigolin D, Dal Maschio G, Rampazzo F, Giani M,  Pastres R. (2009) An individual-based population dynamic model for estimating biomass yield and nutrient fluxes through an off-shore mussel (*Mytilus galloprovincialis*) farm Estuarine, Coastal and Shelf Science 82 (2009) 365-376.
+
+Brigolin D, Pastres R, Tomassetti P, Porrello S (2010) Modelling the biomass yield and the impact of seabream mariculture in the Adriatic and Tyrrhenian Seas (Italy). Aquacult Intern 18:149-163.
+
+Brigolin D, Meccia VL, Venier C, Tomassetti P, Porrello S, Pastres R (2014) Modelling biogeochemical fluxes across a Mediterranean fish cage farm. Aquac Environ Interact 5(1):71-88.
+
+Pastres R, Solidoro C, Cossarini G, Melaku Canu D, Dejak C, (2001). Managing the rearing of *Tapes philippinarum* in the lagoon of Venice: a decision support system. Ecol. Model. 138, 231-245.
+
+Solidoro C, Pastres R, Melaku Canu D, Pellizzato M, Rossi R (2000) Modelling the growth of *Tapes philippinarum* in the northern Adriatic lagoons. Mar Ecol Prog Ser 199:137-148.
+
+
+
+
+

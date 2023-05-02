@@ -1,6 +1,5 @@
 Package: RAC
-Version: 1.1.5.5
-Date: 2018-03-26
+Version: 1.5.5
 Title: R Package for Aqua Culture
 Authors@R: c(person("Baldan", "D.", role = c("aut", "cre"),
 		     email = "damiano.baldan91@gmail.com"),
@@ -11,7 +10,7 @@ Maintainer: Baldan D. <damiano.baldan91@gmail.com>
 Imports: matrixStats, rstudioapi, plotrix, raster, sp
 Encoding: UTF-8
 Suggests: MASS, knitr, rmarkdown
-Description: Solves the bioenergetic balance for different aquaculture sea fish (Sea Bream and Sea Bass) and shellfish (Mussel and Clam) both at individual and population scale.
+Description: Solves the individual bioenergetic balance for different aquaculture sea fish (Sea Bream and Sea Bass; Brigolin et al., 2014 <doi:10.3354/aei00093>) and shellfish (Mussel and Clam; Brigolin et al., 2009 <doi:10.1016/j.ecss.2009.01.029>; Solidoro et al., 2000 <doi:10.3354/meps199137>). Allows for spatialized model runs and population simulations.
 License: MIT + file LICENSE
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
